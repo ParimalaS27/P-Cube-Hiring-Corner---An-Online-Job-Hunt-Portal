@@ -1,0 +1,104 @@
+<html>
+    <head></head>
+    <body>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                margin: 5px;
+            }
+            h3{
+                padding: 10px;
+                margin: 5px;
+            }
+        </style>
+        <div class='container'>
+            {% include 'messages.html' %}
+            {% block body %}{% endblock %}
+        </div>
+        
+        <div>
+
+            <h3> AVAILABLE JOBS</h3>
+            <form method="POST" action='/apply'>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Company</th>
+                    <th>Qualification</th>
+                    <th>Experience</th>
+                    <th>Skill Required</th>
+                    <th>      </th> 
+                </tr>
+                </thead>
+                <tbody>
+                    {% for row in recarr %}
+                        <tr>
+                            <td>{{row[0]}}</td>
+                            <td>{{row[1]}}</td>
+                            <td>{{row[2]}}</td>
+                            <td>{{row[3]}}</td>
+                            <td>{{row[4]}}</td>
+                            <td>{{row[5]}}</td>
+                            <td>{{row[6]}}</td>
+                            <td><input type = "radio" name = "jobid" value = {{row[7]}} required></input></td>
+                            <td><input type="submit" value="Apply" margin="20px"></td>
+                        </tr>
+                    {% endfor %}      
+                </tbody>
+            </table>
+            </form>
+        </br></br>
+        <h3> MY INTERVIEWS</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Company</th>
+                <th>Job</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Result</th>
+                <th>Remarks</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for row in intv %}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td>{{row[3]}}</td>
+                        <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
+                    </tr>
+                {% endfor %}      
+            </tbody>
+        </table>
+        <br/><br/>
+        <h3> MY APPLICATIONS</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Company</th>
+                <th>Job</th>
+                <th>Date</th> 
+            </tr>
+            </thead>
+            <tbody>
+                {% for row in pending %}
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[2]}}</td>
+                    </tr>
+                {% endfor %}      
+            </tbody>
+        </table>
+
+        </div>
+    </body>
+</html>
